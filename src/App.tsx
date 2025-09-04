@@ -8,6 +8,7 @@ const client = generateClient<Schema>();
 function App() {
     const { signOut } = useAuthenticator();
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+}
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -17,12 +18,11 @@ function App() {
 
   function createTodo() {
     client.models.Todo.create({ content: window.prompt("Todo content") });
+  }
         
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
   }
-  }
-}
 
   return (
     <main>
